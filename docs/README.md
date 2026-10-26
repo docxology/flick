@@ -9,8 +9,8 @@ its full metadata (title, tags, dates, GPS, views).
 - `flickr_scraper.py` — the entire tool (target account configured via
   `TARGET_USERNAME` / `TARGET_URL` constants near the top)
 - `requirements.txt` — `flickrapi`, `requests`, `python-dotenv`
-- `flickr_output/<username>/` — generated at runtime: one JPEG + one
-  `_metadata.json` per photo
+- `flickr_output/<username>/` — generated at runtime: one image (the size
+  Flickr serves, `.jpg` by default) + one `_metadata.json` per photo
 
 ## Running
 

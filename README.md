@@ -31,8 +31,8 @@ Files land in `flickr_output/<username>/`, two per photo:
 
 ```
 flickr_output/daniel_friedman/
-  54321012345_a-day-at-the-coast.jpg
-  54321012345_a-day-at-the-coast_metadata.json
+  54321012345_A day at the coast.jpg
+  54321012345_A day at the coast_metadata.json
 ```
 
 Each sidecar records:
@@ -41,6 +41,6 @@ Each sidecar records:
 
 ## Behavior
 
-Photos are fetched in pages of 100 and the script pauses one second between API calls to stay well inside Flickr's rate limits. It requests the `X-Large` size and falls back to the largest size the API reports as available. Filenames combine the photo ID with a sanitized, 50-character slug of the title, so they stay unique and readable.
+Photos are fetched in pages of 100 and the script pauses one second after each photo (each one costs a sizes lookup plus a download) to stay well inside Flickr's rate limits. It requests the `X-Large` size and falls back to the largest size the API reports as available. Filenames combine the photo ID with a sanitized, 50-character slug of the title, so they stay unique and readable.
 
 Only publicly visible photos are retrieved.

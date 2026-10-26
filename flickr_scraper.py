@@ -5,19 +5,19 @@ import requests
 import time
 import re
 from pathlib import Path
+from urllib.parse import urlparse
 from dotenv import load_dotenv
-import sys
 
 # Load environment variables from .env file
 load_dotenv()
 
 # --- Configuration ---
-# API keys now loaded from environment variables (via .env file or system env)
+# API keys are read from the environment (.env file or the process env)
 API_KEY = os.getenv('FLICKR_API_KEY')
 API_SECRET = os.getenv('FLICKR_API_SECRET')
 
 TARGET_USERNAME = 'daniel_friedman'
-# Add URL as a backup method
+# Photostream URL, used as a fallback source for the user ID
 TARGET_URL = 'https://www.flickr.com/photos/daniel_friedman/'
 OUTPUT_DIR = Path('flickr_output')
 X_LARGE_SIZE_LABEL = 'X-Large' # Adjust if necessary, check API response for available sizes
@@ -130,7 +130,7 @@ def save_metadata(photo_info, filepath):
             json.dump(photo_info, f, indent=4, ensure_ascii=False)
         print(f"Saved metadata: {filepath.name}")
         return True
-    except IOError as e:
+    except OSError as e:
         print(f"Error saving metadata {filepath.name}: {e}")
         return False
 
@@ -205,8 +205,8 @@ def main():
         print(f"Fetching page {page}...")
         try:
             # Fetch photos list for the current page
-            # extras includes tags, description, date_taken, owner_name, geo, url_o (original), url_k (2048), url_h (1600), url_l (1024), url_c (800), etc.
-            # We explicitly ask for X-Large size URL if available. Check documentation for all size suffixes.
+            # extras: the metadata fields copied into each sidecar. The download URL
+            # itself comes from photos.getSizes below, not from extras.
             photos_data = flickr.people.getPublicPhotos(
                 user_id=user_id,
                 extras='description,tags,date_taken,geo,owner_name,machine_tags,o_dims,views,media',
@@ -281,7 +281,7 @@ def main():
                 # Download the photo if URL was found
                 if photo_url:
                     # Determine file extension
-                    file_extension = Path(requests.utils.urlparse(photo_url).path).suffix or '.jpg' # Default to .jpg if no extension
+                    file_extension = Path(urlparse(photo_url).path).suffix or '.jpg' # Default to .jpg if no extension
                     photo_filepath = user_output_dir / f"{base_filename}{file_extension}"
 
                     if download_photo(photo_url, photo_filepath):

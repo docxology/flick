@@ -4,7 +4,7 @@
 
 Single-module script repository. `flickr_scraper.py` contains configuration
 constants (`TARGET_USERNAME`, `TARGET_URL`), the Flickr API client, the
-paginator (100 per page, 1s between calls), size fallback (X-Large → largest
+paginator (100 per page, 1s after each photo), size fallback (X-Large → largest
 available), and the metadata sidecar writer.
 
 ## Conventions observed
