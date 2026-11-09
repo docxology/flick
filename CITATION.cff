@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+type: software
+title: "flick"
+authors:
+  - family-names: Friedman
+    given-names: Daniel Ari
+    orcid: "https://orcid.org/0000-0001-6232-9096"
+repository-code: "https://github.com/docxology/flick"
+abstract: "Flickr bulk archiver in Python — downloads every public photo from a given username or profile URL at the largest available size via flickrapi, and writes a JSON sidecar per image with title, description, tags, date taken, GPS coordinates, and view count. Keys loaded from a .env file."
+license: MIT
