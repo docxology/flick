@@ -44,3 +44,7 @@ Each sidecar records:
 Photos are fetched in pages of 100 and the script pauses one second after each photo (each one costs a sizes lookup plus a download) to stay well inside Flickr's rate limits. It requests the `X-Large` size and falls back to the largest size the API reports as available. Filenames combine the photo ID with a sanitized, 50-character slug of the title, so they stay unique and readable.
 
 Only publicly visible photos are retrieved.
+
+## License
+
+Released under the [MIT License](LICENSE).
