@@ -4,6 +4,9 @@
 # Output directory for downloaded files
 flickr_output/
 
+# Generated manuscript artifacts
+/output/
+
 # Python specific ignores
 __pycache__/
 *.py[cod]

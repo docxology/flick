@@ -1,0 +1,18 @@
+digraph archive_workflow {
+  graph [bgcolor="white", nodesep=0.4, ranksep=0.50, dpi=144];
+  node [shape=box, style="rounded,filled", color="#2B4561", fillcolor="#EFF4FA",
+        fontname="DejaVu Sans", fontsize=11, margin="0.14,0.10"];
+  edge [color="#2B4561", fontname="DejaVu Sans", fontsize=9];
+
+  account [label="Resolve Flickr account"];
+  page [label="Fetch public-photo page"];
+  photo [label="Read photo fields and request sizes"];
+  sidecar [label="Write JSON sidecar"];
+  download [label="Try source URL"];
+  next_item [label="Pause and continue"];
+
+  account -> page -> photo -> sidecar;
+  sidecar -> download [label="URL available"];
+  sidecar -> next_item [label="No URL"];
+  download -> next_item;
+}
