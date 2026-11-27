@@ -15,7 +15,7 @@ dot -Tpng assets/archive-workflow.dot -o assets/archive-workflow.png
 
 ## Render and validate
 
-Use a fresh Flick checkout and a separate checkout of the
+Use a fresh Git checkout named `flick` and a separate checkout of the
 [pinned template](https://github.com/docxology/template/tree/87704feae0a4490ef7dad9c931d268e8c30273c2).
 Install Git, uv, Pandoc, XeLaTeX, and the TeX packages listed in the template's
 [setup guide](https://github.com/docxology/template/blob/87704feae0a4490ef7dad9c931d268e8c30273c2/docs/guides/startup-and-setup.md).
